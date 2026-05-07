@@ -30,38 +30,38 @@ An automated pipeline that collects, deduplicates, labels, and classifies academ
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  Step 1 — Collect                                               │
-│   ├── OpenAlex API     15 journals × 4 search terms  →  2,857  │
-│   ├── AEA RCT Registry all completed trials          →  3,616  │
-│   └── J-PAL sitemap    all evaluations               →    705  │
-│                                          Total raw   →  7,178  │
+│   ├── OpenAlex API     15 journals × 4 search terms  →  2,857   │
+│   ├── AEA RCT Registry all completed trials          →  3,616   │
+│   └── J-PAL sitemap    all evaluations               →    705   │
+│                                          Total raw   →  7,178   │
 ├─────────────────────────────────────────────────────────────────┤
-│  Step 2 — Deduplicate & merge  →  all_papers.csv               │
+│  Step 2 — Deduplicate & merge  →  all_papers.csv                │
 │   Primary key: normalized DOI                                   │
 │   Fallback:    normalized title + year                          │
 ├─────────────────────────────────────────────────────────────────┤
-│  Step 3 — Cross-reference registries                           │
-│   in_aea  = True if source is AEA or DOI matches AEA record    │
-│   in_jpal = True if source is J-PAL or DOI matches J-PAL       │
-│                               Registry-confirmed  →  4,321     │
+│  Step 3 — Cross-reference registries                            │
+│   in_aea  = True if source is AEA or DOI matches AEA record     │
+│   in_jpal = True if source is J-PAL or DOI matches J-PAL        │
+│                               Registry-confirmed  →  4,321      │
 ├─────────────────────────────────────────────────────────────────┤
-│  Step 4 — Abstract recovery  (2,857 OpenAlex papers)           │
-│   Semantic Scholar batch API  →  +150 abstracts                │
-│   Remaining missing: 59 Elsevier papers (require inst. IP)     │
+│  Step 4 — Abstract recovery  (2,857 OpenAlex papers)            │
+│   Semantic Scholar batch API  →  +150 abstracts                 │
+│   Remaining missing: 59 Elsevier papers (require inst. IP)      │
 ├─────────────────────────────────────────────────────────────────┤
-│  Step 5 — Keyword filter  (2,857 OpenAlex papers)              │
-│   kw_strong: 866   "randomized trial", "field experiment" …    │
-│   kw_weak:   407   "experiment", "intervention" …              │
-│   kw_none: 1,584   no experiment language in title/abstract    │
+│  Step 5 — Keyword filter  (2,857 OpenAlex papers)               │
+│   kw_strong: 866   "randomized trial", "field experiment" …     │
+│   kw_weak:   407   "experiment", "intervention" …               │
+│   kw_none: 1,584   no experiment language in title/abstract     │
 ├─────────────────────────────────────────────────────────────────┤
-│  Step 6 — LLM classification  (GPT-4o-mini, all 2,857)        │
-│   llm_yes: 1,179   llm_no: 1,678                               │
+│  Step 6 — LLM classification  (GPT-4o-mini, all 2,857)          │
+│   llm_yes: 1,179   llm_no: 1,678                                │
 ├─────────────────────────────────────────────────────────────────┤
 │  Step 7 — Manual review                                         │
 │   7 borderline cases resolved; 9 low-confidence papers dropped  │
 ├─────────────────────────────────────────────────────────────────┤
 │  Output — verified_papers.csv                                   │
-│   Registry-confirmed: 4,321  +  LLM-confirmed: 1,179           │
-│                               Total verified  →  5,500         │
+│   Registry-confirmed: 4,321  +  LLM-confirmed: 1,179            │
+│                               Total verified  →  5,500          │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
