@@ -2,6 +2,8 @@
 
 An automated pipeline that collects, deduplicates, labels, and classifies academic field experiment papers from four data sources into a single curated dataset. The output is a clean, deduplicated corpus of **5,500 verified field experiments and RCTs** drawn from 15 top journals plus the AEA RCT Registry and J-PAL.
 
+![rct-corpus-builder overview](docs/social_preview.png)
+
 ## Dataset at a glance
 
 | | |
