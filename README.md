@@ -72,8 +72,8 @@ An automated pipeline that collects, deduplicates, labels, and classifies academ
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/Six-Persimmon/Field-Experiment-AI-Agent.git
-cd Field-Experiment-AI-Agent
+git clone https://github.com/husseinmoussa7/rct-corpus-builder.git
+cd rct-corpus-builder
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -221,7 +221,7 @@ If you use this dataset or pipeline in your research, please cite:
 @misc{rct-corpus-builder,
   title  = {rct-corpus-builder: An Automated Pipeline for Field Experiment Paper Collection},
   year   = {2026},
-  url    = {https://github.com/Six-Persimmon/Field-Experiment-AI-Agent}
+  url    = {https://github.com/husseinmoussa7/rct-corpus-builder}
 }
 ```
 
