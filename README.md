@@ -88,7 +88,17 @@ cp .env.example .env
 ### 3. Run the full pipeline
 
 ```bash
-python data_collection/collect.py
+# Collect from all sources (matches the included dataset: 2015–present)
+python -m data_collection.collect --year-from 2015
+
+# Collect from a single source
+python -m data_collection.collect --source aea
+python -m data_collection.collect --source jpal
+python -m data_collection.collect --source journals
+python -m data_collection.collect --source journals --journal AER
+
+# Extend back further in time
+python -m data_collection.collect --year-from 2000
 ```
 
 The pipeline is **fully resumable** — every API response is cached to `data_collection/papers/raw/`. Re-running skips already-fetched pages and only retrieves new content.
